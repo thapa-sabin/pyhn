@@ -11,8 +11,8 @@ class listRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__": # This code should execute only once
     app = tornado.web.Application([
-        (r"/", basicRequestHandler)
-        (r"/animal", listRequestHandler)
+        (r"/", basicRequestHandler),
+        (r"/animals", listRequestHandler)
     ]) # Array of tuples of endpoints that will request handlers
 
     port = 8888
