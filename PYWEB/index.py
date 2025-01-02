@@ -18,11 +18,16 @@ class queryParamRequestHandler(tornado.web.RequestHandler):
         else:
             self.write(f"{num} is not a valid integer.")
 
+class resourceParamRequestHandler(tornado.web.RequestHandler):
+    def get(self, studentName, courseID):
+        self.write(f"Welcome {studentName}, the course you are viewing is {courseID}")
+
 if __name__ == "__main__": # This code should execute only once
     app = tornado.web.Application([
         (r"/", basicRequestHandler),
         (r"/animals", listRequestHandler),
-        (r"/isEven", queryParamRequestHandler)
+        (r"/isEven", queryParamRequestHandler),
+        (r"/students/([a-z]+)/([0-9]+)", resourceParamRequestHandler) # Hardcoded requirement for a-z upto infinity and 0-9 upto infinity
     ]) # Array of tuples of endpoints that will request handlers
 
     port = 8888
