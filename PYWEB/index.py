@@ -2,6 +2,10 @@ import tornado.web
 import tornado.ioloop # Thread that is continuously waiting for result
 import json
 
+class mainRequestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("index.html")
+
 class listRequestHandler(tornado.web.RequestHandler):
     def get(self):
         f = open("list.txt", "r")
@@ -18,6 +22,7 @@ class listRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
     app = tornado.web.Application([
+        (r"/", mainRequestHandler),
         (r"/list", listRequestHandler)
     ]) # Array of tuples of endpoints that will request handlers
 
